@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 @Repository
 
-public class MovieRepository {
+public class MovieRepository {//api 레포지토리.
 	
 	public Popular findPopularList(int page) throws JsonMappingException, JsonProcessingException {
 		

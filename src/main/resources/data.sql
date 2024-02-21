@@ -1,1 +1,1 @@
-insert into accounts(user_id, user_password, user_name) values ('tom','1234','마스터'),('brown','4321','부조장');
+insert into accounts(nickname, user_password, username) values ('마스터킴','1234','tom88'),('부조장','4321','brown88');

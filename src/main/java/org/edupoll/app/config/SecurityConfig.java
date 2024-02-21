@@ -9,7 +9,7 @@ import jakarta.servlet.DispatcherType;
 
 @Configuration
 
-public class SecurityConfig {
+public class SecurityConfig {//movie bell
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
