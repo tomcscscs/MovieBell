@@ -48,10 +48,13 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {
+		
+		
 
 		return "auth/login";
 
 	}
+	
 	
 
 }

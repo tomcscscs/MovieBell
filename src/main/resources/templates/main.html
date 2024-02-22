@@ -48,6 +48,7 @@
          style="padding: 0.1px;">
         <p class="p-5">인기</p>
     </div>
+    
     <div class="d-flex justify-content-between row row-cols-6">
         <div th:each="var : ${popular.results}" class="p-1 fs-3"
              th:if="${varStat.count <= 6}">
