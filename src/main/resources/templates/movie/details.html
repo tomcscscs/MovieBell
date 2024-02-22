@@ -3,37 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" > 	
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-	
+
 
 <style>
 .blur {
 	filter: blur(6px);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap')
+	;
 </style>
-  <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap')
-        ;
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap')
+	;
 
-        h1 {
-            font-family: "Mochiy Pop P One", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-    </style>
+h1 {
+	font-family: "Mochiy Pop P One", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+</style>
 
 </head>
 <body>
 
-    <nav th:replace="~{fragment/template::navbar}"></nav>
+	<nav th:replace="~{fragment/template::navbar}"></nav>
 
 	<div style="position: relative;">
 		<img
@@ -42,12 +44,23 @@
 			class="blur"> <img
 			th:src="@{https://image.tmdb.org/t/p/w500{path}(path=${details.posterPath})}"
 			alt="Poster Image" style="position: absolute; top: 0; left: 0;">
-		
-		<div class="additional-info">
-			<div class="text-white lora-movietitle" style="text-align: left; font-size: 50px;" th:text ="${details.originalTitle}"></div>
-			<h2 class="text-white" th:text ="${details.overview}" style="width: 60%; text-align: left; font-size: 20px"></h2>
-			<p class="text-white">이미지 위에 표시되는 추가 정보 등을 여기에 입력합니다.</p>
-		</div>
+
+	
+	
+	<div class="container top-3">
+    <div class="additional-info text-white position-absolute top-50 end-0 p-3 w-25 start-50 translate-middle">
+        <div class="text-white lora-movietitle" style="text-align: left; font-size: 50px;" th:text="${details.originalTitle}"></div>
+        <div class="card" style="width: 50rem; opacity: 0.5;"> <!-- 배경에만 투명도 적용 -->
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                <p class="card-text" th:text="${details.overview}"></p>
+                <a href="#" class="card-link"></a> <a href="#" class="card-link">Another link</a>
+                <a href="#" class="card-link">Card link</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 	</div>
 
 

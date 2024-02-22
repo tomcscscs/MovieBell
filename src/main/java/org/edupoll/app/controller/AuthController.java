@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -32,13 +34,11 @@ public class AuthController {
 			return "redirect:/auth/register?error";
 
 		}
-		
-		BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
-		String encodedPassword = bCryptPasswordEncoder.encode(cmd.getPassword());
-		
-		
 
-		Accounts one = Accounts.builder().username(cmd.getUsername()).userPassword("{bcrypt}"+ encodedPassword)
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = bCryptPasswordEncoder.encode(cmd.getPassword());
+
+		Accounts one = Accounts.builder().username(cmd.getUsername()).userPassword("{bcrypt}" + encodedPassword)
 				.nickname(cmd.getNickname()).build();
 
 		accountRepository.save(one);
@@ -48,13 +48,17 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {
-		
-		
 
 		return "auth/login";
 
 	}
-	
-	
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		session.invalidate();
+
+		return "redirect:/main";
+
+	}
 
 }

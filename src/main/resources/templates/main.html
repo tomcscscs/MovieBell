@@ -53,7 +53,7 @@
         <div th:each="var : ${popular.results}" class="p-1 fs-3"
              th:if="${varStat.count <= 6}">
             <div>
-                <a class="stretched-link" th:href="@{/{movieId}(movieId=${var.id})}">
+                <a class="stretched-link" th:href="@{movie/{movieId}(movieId=${var.id})}">
                     <img alt="picture"
                          th:src="@{https://image.tmdb.org/t/p/w500{path}(path=${var.posterPath})}">
                 </a>
@@ -72,7 +72,7 @@
     <div class="d-flex justify-content-between row row-cols-6">
         <div th:each="one : ${topRated.results}" class="p-1 fs-3 "
              th:if="${oneStat.count <= 6}">
-            <a class="stretched-link" th:href="@{/{movieId}(movieId=${one.id})}">
+            <a class="stretched-link" th:href="@{movie/{movieId}(movieId=${one.id})}">
                 <img alt="picture"
                      th:src="@{https://image.tmdb.org/t/p/w500{path}(path=${one.posterPath})}">
             </a>

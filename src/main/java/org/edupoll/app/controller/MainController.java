@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JacksonException;
 
@@ -21,7 +22,6 @@ public class MainController {
 
 	private final MovieRepository movieRepository;
 	private final AccountRepository accountRepository;
-	
 
 	@GetMapping("/template")
 	public String showTemplatePage(Model model) {
@@ -34,25 +34,20 @@ public class MainController {
 	public String showMainPage(Authentication authentication, Model model) throws JacksonException {
 		Popular popular = movieRepository.findPopularList(1);
 		Popular topRated = movieRepository.findTopRatedrList(1);
-		
-		if(authentication != null) {
-			Accounts accounts=accountRepository.findByUsername(authentication.getName()).get();
-			
+
+		if (authentication != null) {
+			Accounts accounts = accountRepository.findByUsername(authentication.getName()).get();
+
 			model.addAttribute("accounts", accounts);
 		}
 		model.addAttribute("popular", popular);
 		model.addAttribute("topRated", topRated);
-			
+
 		return "/main";
 
-	}		
-		
-		
-		
+	}
 
-
-
-	@GetMapping("/{movieId}")
+	@GetMapping("movie/{movieId}")
 	public String showDetailPage(@PathVariable Integer movieId, Model model) throws JacksonException {
 		// 추후 세션추가.
 		MovieDetails details = movieRepository.findMovieDetailsById(movieId);
@@ -62,9 +57,5 @@ public class MainController {
 		return "movie/details";
 
 	}
-	
-	
-	
-
 
 }
