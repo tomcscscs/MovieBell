@@ -37,7 +37,7 @@ public class MainController {
 
 	}
 
-	@GetMapping("/{movieId}")
+	@GetMapping("/movie/{movieId}")
 	public String showDetailPage(@PathVariable Integer movieId, Model model) throws JacksonException {
 		// 추후 세션추가.
 		MovieDetails details = movieRepository.findMovieDetailsById(movieId);

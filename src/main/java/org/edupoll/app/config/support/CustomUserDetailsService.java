@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
 @RequiredArgsConstructor
-
 public class CustomUserDetailsService implements UserDetailsService {
 
 	private final AccountRepository accountRepository;
@@ -23,13 +21,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Accounts> optional = accountRepository.findByUsername(username);
-
+		System.out.println(username +" / " +optional.isPresent());
 		if (optional.isEmpty()) {
 			throw new UsernameNotFoundException(username + " is not exist");
 		}
-
+		
 		Accounts got = optional.get();
-
+		
 		return new User(got.getUsername(), got.getUserPassword(), new ArrayList<>());
 	}
 
