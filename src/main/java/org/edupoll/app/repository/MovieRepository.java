@@ -57,7 +57,7 @@ public class MovieRepository {//api 레포지토리.
 		String url = "https://api.themoviedb.org/3/movie/" + movieId + "?";
 		url += "api_key=e24068e30b82431ee5e3a68d4e195cf3&";
 		url += "language=ko-KR";
-
+		
 		ResponseEntity<MovieDetails> response = template.exchange(url, HttpMethod.GET, null, MovieDetails.class);
 
 		return response.getBody();
