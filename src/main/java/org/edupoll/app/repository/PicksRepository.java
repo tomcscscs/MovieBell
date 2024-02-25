@@ -10,6 +10,12 @@ public interface PicksRepository extends JpaRepository<Picks, Integer> {
 	
 	List<Picks> findByAccountsUsername(String username);
 	
+	Integer countByAccountsId(int id);
+	
+	
+	
+	
+	
 	
 	
 

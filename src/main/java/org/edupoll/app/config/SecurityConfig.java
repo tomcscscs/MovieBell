@@ -21,7 +21,7 @@ public class SecurityConfig {// movie bell
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(t -> t.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() //
 				.requestMatchers("/static/**").permitAll().anyRequest().permitAll());
-
+		http.csrf(t -> t.disable());
 		http.formLogin(t -> t.loginPage("/auth/login").permitAll());
 		http.anonymous(t -> t.disable());
 

@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 
 public class PicksCommand {
+	
 	private Integer movieId;
 
 	private String movieTitle;
@@ -14,5 +15,7 @@ public class PicksCommand {
 	private LocalDate timing;
 
 	private String posterPath;
+	
+	
 
 }

@@ -35,13 +35,14 @@ public class AjaxController {
             .accounts(accountRepository.findByUsername(authentication.getName()).orElse(null))
             .build();
         
+        
+        
         picksRepository.save(one);
 
-        // 클라이언트에게 성공적인 응답 반환
+		// 클라이언트에게 성공적인 응답 반환
         Map<String, String> response = new HashMap<>();
         response.put("result", "success");
         
-        model.addAttribute("picked", true);
         
         
         return response;
