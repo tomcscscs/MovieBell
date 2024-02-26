@@ -70,11 +70,11 @@ h1 {
 								<div class="p-2 border-end">
 									<i th:if="${picked}" class="bi bi-heart-fill" id="pick"
 										style="cursor: pointer; font-size: 3rem"></i> <i
-										th:unless="${picked}" class="bi bi-heart" id="pick"
+										th:unless="${picked}" class="bi bi-heart" id="pick"  data-picked="${picked}"
 										style="cursor: pointer; font-size: 3rem"></i>
 								</div>
 								<i class="bi bi-card-text ms-3"
-									style="cursor: pointer; font-size: 3rem"></i>
+									style="cursor: pointer; font-size: 3rem" th:onclick="location.href='/community/main'"></i>
 							</div>
 							<div class="p-2">
 								<button class="btn btn-sm btn-dark" type="button"
@@ -96,37 +96,8 @@ h1 {
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"> </script>
 
-	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('pick').addEventListener('click', function () {
-            // 클릭된 경우 fetch 함수를 이용하여 AJAX 요청 보냄
-            fetch("/ajax/pickAjax", {method:"POST", headers:{"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    movieId: "${details.id}",
-                    movieTitle: "${details.originalTitle}",
-                    timing: "${details.releaseDate}",
-                    posterPath: "${details.posterPath}"
-                })  
-            }).then(response=>response.json())
-            .then(data=> {
-                
-            	if(data.result === "success") {
-                    const divElement = document.createElement("div");
-                    divElement.className = "d-flex my-2 align-items-center";
+	
 
-                    const heartIcon = document.createElement("i");
-                    heartIcon.className = data.picked ? "bi bi-heart-fill" : "bi bi-heart";
-                    heartIcon.id = "pick";
-                    heartIcon.style.cursor = "pointer";
-                    divElement.appendChild(heartIcon);
-
-                    document.body.appendChild(divElement);
-                }
-            })
-            .catch(error => {console.error("Error",error);});
-        });	
-	});
-       </script>
 </body>
 </html>
 
