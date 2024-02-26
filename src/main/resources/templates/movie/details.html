@@ -66,10 +66,10 @@ h1 {
 							subtitle</h6>
 						<p class="card-text" th:text="${details.overview}"></p>
 						<div class="d-flex my-2 align-items-center">
-							<div class="p-2 border-end">
+							<div class="p-2 border-end  d-flex justify-content-between">
 								<div class="p-2 border-end">
 									<i th:if="${picked}" class="bi bi-heart-fill" id="pick"
-										style="cursor: pointer; font-size: 3rem"></i> <i
+										style="cursor: pointer; font-size: 3rem;"></i> <i
 										th:unless="${picked}" class="bi bi-heart" id="pick"  data-picked="${picked}"
 										style="cursor: pointer; font-size: 3rem"></i>
 								</div>
@@ -78,7 +78,7 @@ h1 {
 							</div>
 							<div class="p-2">
 								<button class="btn btn-sm btn-dark" type="button"
-									onclick="location.href='${contextPath}/chat/link?productId=${product.id }'">문의하기</button>
+									onclick="location.href='${contextPath}/chat/link?productId=${product.id }'">###</button>
 							</div>
 						</div>
 

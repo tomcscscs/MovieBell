@@ -28,11 +28,13 @@ public class Posts {
 	
 	private String userId;
 	
+	private String title;
+	
 	private String contents;
 	
-	private LocalDateTime wirteAt;
+	private LocalDateTime writeAt;
 	
-	private Integer viewCount;
+	private Double viewCount;
 	
 	
 	
