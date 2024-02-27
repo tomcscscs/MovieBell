@@ -86,22 +86,39 @@ h1 {
 							<button class="nav-link text-white" id="pills-contact-tab"
 								data-bs-toggle="pill" data-bs-target="#pills-contact"
 								type="button" role="tab" aria-controls="pills-contact"
+								aria-selected="false">
+								지금<span class="badge rounded-pill text-bg-danger"
+									style="position: relative; top: -10px; margin-right: 5px">Live</span>
+							</button>
+						</li>
+
+
+
+
+						<li class="nav-item">
+							<button class="nav-link text-white" id="pills-contact-tab"
+								data-bs-toggle="pill" data-bs-target="#pills-contact"
+								type="button" role="tab" aria-controls="pills-contact"
 								aria-selected="false" onclick="location.href='/auth/logout'">로그아웃</button>
 						</li>
-							<!-- Example split danger button -->
-<div class="btn-group p-2" style="width: fit-content; margin-right: 8rem">
-  <button type="button" class="btn btn-danger">Action</button>
-  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu pr-5" style="padding-right: 50px">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
+						<!-- Example split danger button -->
+						<div class="btn-group p-2"
+							style="width: fit-content; margin-right: 8rem">
+							<button type="button" class="btn btn-danger">Action</button>
+							<button type="button"
+								class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu pr-5" style="padding-right: 50px">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="#">Something else
+										here</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Separated link</a></li>
+							</ul>
+						</div>
 					</ul>
 				</div>
 			</nav>
@@ -141,24 +158,19 @@ h1 {
 								aria-selected="false" onclick="location.href='/auth/register'">
 								회원가입</button>
 						</li>
-						<li class="nav-item">
-							<button class="nav-link text-white" id="pills-contact-tab"
-								data-bs-toggle="pill" data-bs-target="#pills-contact"
-								type="button" role="tab" aria-controls="pills-contact"
-								aria-selected="false">지금</button>
-						</li>
+
 						<li class="nav-item">
 							<button class="nav-link text-white" id="pills-contact-tab"
 								data-bs-toggle="pill" data-bs-target="#pills-contact"
 								type="button" role="tab" aria-controls="pills-contact"
 								aria-selected="false" onclick="location.href='/community/main'">커뮤니티</button>
 						</li>
-						
+
 					</ul>
 				</div>
 			</nav>
-			
-		
+
+
 			<div class="tab-content bg-secondary" id="pills-tabContent">
 				<div class="tab-pane fade show active hahmlet-heliot font-bold"
 					id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
