@@ -1,0 +1,10 @@
+package org.edupoll.app.repository;
+
+import org.edupoll.app.entity.Posts;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PostDetailRepository extends JpaRepository<Posts, Integer> {
+	
+	
+
+}

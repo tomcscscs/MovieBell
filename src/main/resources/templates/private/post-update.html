@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>무비벨 커뮤니티</title>
+<title>수정 페이지</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 
 
@@ -41,21 +41,21 @@ h1 {
 	font-weight: 400;
 	font-style: normal;
 }
+
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/pic/communitymain.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    filter: brightness(70%); /* 이미지의 밝기를 70%로 조절합니다. */
-    filter: blur(5px);
-    
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('/pic/post-update.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: -1;
+	filter: brightness(70%); /* 이미지의 밝기를 70%로 조절합니다. */
+	filter: blur(5px);
 }
 </style>
 
@@ -65,33 +65,23 @@ body::before {
 	<nav th:replace="~{fragment/template::navbar}"></nav>
 
 
+	<form th:action="@{/community/updatepost}" method="post">
+		<div class="card mx-auto mt-5" style="width: 50rem; height: 30rem">
+			<div class="card-body">
+				<h5 class="card-title">
+					<input type="hidden" name="postId" th:value="${tempPosts.id}">
+				</h5>
+				<h5 class="card-title">
+					<input type="text" name="title" th:value="${tempPosts.title}">
+				</h5>
+				<h1 class="card-text">
+				<input type="text" name="content" th:value="${tempPosts.contents}">
 
-	<div class="list-group pt-5 ">
-		<div class="d-flex justify-content-between text-white">
-			<div class="noto-serif"
-				style="font-size: 50px">왁자지껄</div>
-			<div class="d-flex mx-auto" >
-			<button type="button" class="btn btn-outline-info" th:onclick="location.href='/community/postmain'">글쓰기</button>
-			</div>	
+				</h1>
+				<button type="submit" class="btn btn-outline-primary">수정</button>
+			</div>
 		</div>
-<div style="width: 880px">
-		<a th:href="@{/community/details(postId=${one.id})}" class="list-group-item list-group-item-action"
-    th:each="one : ${postsAll}">
-    <span th:text="${one.id +'/'+one.userId +'/'}"></span>
-    <span th:text="${one.title +'/'}"></span>
-    <span th:text="${#strings.length(one.contents) &gt; 10 ? #strings.substring(one.contents, 0, 10) + '...' : one.contents}"></span>
-    <span th:text="${'/' + one.writeAt}"></span>
-</a>
-</div>
-	</div>
-
-
-
-
-
-
-
-
+	</form>
 
 
 
