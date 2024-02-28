@@ -57,5 +57,25 @@ public class MainController {
 		return "movie/details";
 
 	}
+	@GetMapping("/movie/popularAll")
+	public String showPopularAllPage(Model model) throws JacksonException {
+		
+		movieRepository.
+		
+		model.addAttribute("details", details);
+		
+		return "movie/details";
+		
+	}
+	@GetMapping("/movie/topratedAll")
+	public String showTopratedAllPage(Model model) throws JacksonException {
+		// 추후 세션추가.
+		MovieDetails details = movieRepository.findMovieDetailsById(movieId);
+		
+		model.addAttribute("details", details);
+		
+		return "movie/details";
+		
+	}
 
 }
