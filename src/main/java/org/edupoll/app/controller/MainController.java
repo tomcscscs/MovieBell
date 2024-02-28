@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JacksonException;
 
@@ -57,25 +58,23 @@ public class MainController {
 		return "movie/details";
 
 	}
+
 	@GetMapping("/movie/popularAll")
-	public String showPopularAllPage(Model model) throws JacksonException {
-		
-		movieRepository.
-		
-		model.addAttribute("details", details);
-		
-		return "movie/details";
-		
+	public String showPopularAllPage(@RequestParam(defaultValue = "1") int page, Model model) throws JacksonException {
+	    Popular popular = movieRepository.findPopularList(page);
+	    model.addAttribute("popular", popular);
+	    return "movie/popular-all";
 	}
+
+
 	@GetMapping("/movie/topratedAll")
-	public String showTopratedAllPage(Model model) throws JacksonException {
-		// 추후 세션추가.
-		MovieDetails details = movieRepository.findMovieDetailsById(movieId);
-		
-		model.addAttribute("details", details);
-		
-		return "movie/details";
-		
+	public String showTopratedAllPage(@RequestParam(defaultValue = "1") int page,Model model) throws JacksonException {
+		Popular topRated = movieRepository.findTopRatedrList(page);
+		model.addAttribute("toprated", topRated);
+
+
+		return "movie/toprated-all";
+
 	}
 
 }

@@ -9,6 +9,7 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
 @import
@@ -50,7 +51,7 @@ p {
 			<h4 class="m-0 song-myung-regular">
 				인기
 				</h4>
-				<h6 class="m-1 p-1">더보기+</h6>
+				<button type="button" class="btn btn-outline-warning" style="border: none; margin-right: 10px" onclick="location.href='/movie/popularAll'"><i class="bi bi-plus-circle"></i></button>
 		</div>
 		<div class="row row-cols-6 g-0">
 			<div th:each="var : ${popular.results}" th:if="${varStat.count <= 6}">
@@ -68,7 +69,7 @@ p {
 	<div class="top-rated-section">
 		<div class="py-3 bg-success text-white d-flex justify-content-between">
 			<h4 class="m-0 song-myung-regular">평가가 좋은 작품들</h4>
-			<h6 class="m-1 p-1" onclick="location.href=''">더보기+</h6>
+				<button type="button" class="btn btn-outline-warning" style="border: none; margin-right: 10px" onclick="location.href='/movie/topratedAll'"><i class="bi bi-plus-circle"></i></button>
 
 		</div>
 		<div class="row row-cols-6 g-0">
