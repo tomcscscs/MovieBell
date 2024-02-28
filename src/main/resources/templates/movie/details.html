@@ -43,7 +43,7 @@ h1 {
 
 	<nav th:replace="~{fragment/template::navbar}"></nav>
 
-	<div style="position: relative;">
+	<div style="position: relative;" id="content" th:data-movie-id="${details.id}" th:data-movie-title="${details.originalTitle}" th:data-poster-path="${details.posterPath}" th:data-release-date="${details.releaseDate}">
 		<img
 			th:src="@{https://image.tmdb.org/t/p/original{path}(path=${details.backdropPath})}"
 			alt="Background Image" style="width: 100%; height: auto;"
@@ -70,11 +70,13 @@ h1 {
 								<div class="p-2 border-end">
 									<i th:if="${picked}" class="bi bi-heart-fill" id="pick"
 										style="cursor: pointer; font-size: 3rem;"></i> <i
-										th:unless="${picked}" class="bi bi-heart" id="pick"  data-picked="${picked}"
+										th:unless="${picked}" class="bi bi-heart" id="pick"
+										data-picked="${picked}"
 										style="cursor: pointer; font-size: 3rem"></i>
 								</div>
 								<i class="bi bi-card-text ms-3"
-									style="cursor: pointer; font-size: 3rem" th:onclick="location.href='/community/main'"></i>
+									style="cursor: pointer; font-size: 3rem"
+									th:onclick="location.href='/community/main'"></i>
 							</div>
 							<div class="p-2">
 								<button class="btn btn-sm btn-dark" type="button"
@@ -96,7 +98,63 @@ h1 {
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"> </script>
 
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    const heartIcon = document.getElementById("pick");
+	    let picked = heartIcon.dataset.picked === "true";	
+	    const content= document.querySelector("#content");
+	    heartIcon.addEventListener("click", function() {
+	        // 서버로 전송할 데이터 설정
+	        const formData = new FormData();
+	        formData.append("picked", !picked);
+	        formData.append("movieId", content.dataset.movieId);
+	        formData.append("movieTitle", content.dataset.movieTitle);
+	        formData.append("releaseDate", content.dataset.releaseDate);
+	        formData.append("posterPath", content.dataset.posterPath);
+	        
+	        fetch("/ajax/pickAjax",{
+	        	method: "POST",
+	        	body: formData
+	        })
+	        .then(response => response.json())
+	        .then(data => {
+	        	if(data.result == "success"){
+	        		
+	        		picked= !picked;
+	        		
+	        		if(picked){
+	        			heartIcon.classList.remove("bi-heart");
+	        			heartIcon.classList.add("bi-heart-fill");
+	        			
+	        		}else{
+	        			heartIcon.classList.add("bi-heart-fill");
+	        			heartIcon.classList.remove("bi-heart");
+	        			
+	        		}
+	        	}else{
+	        		console.error("Error가 났네요. 코드를 확인하세요.")
+	        	}
+	        	
+	        	})
+	        	.catch(error => {
+	        		console.error("Error", error);
+	        	});
+	        	});
+	        	});
+	        
+	    
+	    
+	        	
+	        
+	        
+	        
+
 	
+	
+	
+	</script>
+
+
 
 </body>
 </html>

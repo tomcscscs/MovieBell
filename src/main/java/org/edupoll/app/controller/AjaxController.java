@@ -1,16 +1,16 @@
 package org.edupoll.app.controller;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.edupoll.app.command.PicksCommand;
+import org.edupoll.app.entity.Accounts;
 import org.edupoll.app.entity.Picks;
 import org.edupoll.app.repository.AccountRepository;
 import org.edupoll.app.repository.PicksRepository;
 import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,19 +25,35 @@ public class AjaxController {
 
 	@PostMapping("/ajax/pickAjax")
 	@ResponseBody
-	public Map<String, String> processPickController(@RequestBody PicksCommand cmd, Authentication authentication,
-			Model model) {
-		// Picks 객체 생성 및 저장
-		Picks one = Picks.builder().movieId(cmd.getMovieId()).originalTitle(cmd.getMovieTitle())
-				.releaseDate(cmd.getTiming()).posterPath(cmd.getPosterPath())
-				.accounts(accountRepository.findByUsername(authentication.getName()).orElse(null)).build();
-
-		picksRepository.save(one);
-
-		// 클라이언트에게 성공적인 응답 반환
-		Map<String, String> response = new HashMap<>();
-		response.put("result", "success");
-
-		return response;
+	public Map<String, String> processPickController(PicksCommand cmd, Authentication authentication) {
+		Map<String, String> response = new LinkedHashMap<>();
+		if (authentication == null) {
+			response.put("result", "error");
+			return response;
+		}
+		// System.out.println(cmd);
+		String userName = authentication.getName();
+		if (cmd.getPicked()) {
+			// save
+			Accounts account = accountRepository.findByUsername(userName).get();
+			Picks entity = Picks.builder().accounts(account).movieId(cmd.getMovieId())
+					.originalTitle(cmd.getMovieTitle()).releaseDate(cmd.getReleaseDate())
+					.posterPath(cmd.getPosterPath()).build();
+			picksRepository.save(entity);
+			response.put("result", "success");
+			return response;
+		} else {
+			// delete
+			Optional<Picks> optional =
+					picksRepository.findByAccountsUsernameAndMovieId(userName, cmd.getMovieId());
+			if(optional.isEmpty()) {
+				response.put("result", "error");
+				return response;
+			}
+			Picks entity = optional.get();
+			picksRepository.delete(entity);
+			response.put("result", "success");
+			return response;
+		}
 	}
 }
