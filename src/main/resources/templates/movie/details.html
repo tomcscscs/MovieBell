@@ -43,7 +43,11 @@ h1 {
 
 	<nav th:replace="~{fragment/template::navbar}"></nav>
 
-	<div style="position: relative;" id="content" th:data-movie-id="${details.id}" th:data-movie-title="${details.originalTitle}" th:data-poster-path="${details.posterPath}" th:data-release-date="${details.releaseDate}">
+	<div style="position: relative;" id="content"
+		th:data-movie-id="${details.id}"
+		th:data-movie-title="${details.originalTitle}"
+		th:data-poster-path="${details.posterPath}"
+		th:data-release-date="${details.releaseDate}">
 		<img
 			th:src="@{https://image.tmdb.org/t/p/original{path}(path=${details.backdropPath})}"
 			alt="Background Image" style="width: 100%; height: auto;"
