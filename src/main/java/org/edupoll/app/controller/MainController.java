@@ -68,7 +68,7 @@ public class MainController {
 
 
 	@GetMapping("/movie/topratedAll")
-	public String showTopratedAllPage(@RequestParam(defaultValue = "1") int page,Model model) throws JacksonException {
+	public String showTopratedAllPage(@RequestParam(defaultValue = "1") int page, Model model) throws JacksonException {
 		Popular topRated = movieRepository.findTopRatedrList(page);
 		model.addAttribute("toprated", topRated);
 
