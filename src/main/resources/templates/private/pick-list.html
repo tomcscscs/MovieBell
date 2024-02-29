@@ -64,14 +64,14 @@ table {
 
 	<nav th:replace="~{fragment/template::navbar}"></nav>
 	<div th:if="${message}">
-		<p class="text-white pr-3" style="font: bold; text-align: right;"
+		<p class="text-white pr-3" style="font: bold; text-align: right; margin-right: 350px;"
 			th:text="${message}"></p>
 	</div>
 
 
 	
-<div class="table-responsive float-end" style="margin-right: 250px; margin-top: 150px; border-radius: 30px; margin-bottom: 500px;" >
-<table class="table" style="width: 400px;" >
+<div th:unless="${message}" class="table-responsive float-end" style="margin-right: 250px; margin-top: 150px; border-radius: 30px; margin-bottom: 5px; position: relative;" >
+<table class="table" style="width: 400px; padding-bottom: 50px; margin-bottom:0px" >
     <thead>
         <tr>
             <th>No</th>
@@ -83,7 +83,7 @@ table {
     <tbody>
         <tr th:each="one, iterStat : ${picksLists}">
             <td th:text="${iterStat.count}"></td>
-            <td><img style="height: 50px" th:src="@{https://image.tmdb.org/t/p/w200{path}(path=${one.posterPath})}" alt="Poster"></td>
+            <td><a th:href="@{/movie/{movieId}(movieId=${one.movieId})}"><img style="height: 50px" th:src="@{https://image.tmdb.org/t/p/w200{path}(path=${one.posterPath})}" alt="Poster"></a> </td>
             <td th:text="${one.originalTitle}" style="text-align: center;"></td>
             <td th:text="${one.releaseDate}"></td>
         </tr>

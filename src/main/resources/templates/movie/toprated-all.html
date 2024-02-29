@@ -74,9 +74,9 @@ body::before {
 
 	<div class="row row-cols-5 g-0">
 		<div th:each="top : ${toprated.results}">
-			<img alt="topratedAll"
+			<a th:href="@{/movie/{movieId}(movieId=${top.id})}"><img alt="topratedAll"
 				th:src="@{https://image.tmdb.org/t/p/w500{path}(path=${top.posterPath})}"
-				class="w-100">
+				class="w-100"></a> 
 		</div>
 	</div>
 	
